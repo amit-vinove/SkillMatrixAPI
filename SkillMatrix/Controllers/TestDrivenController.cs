@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SkillMatrix.Data;
 using SkillMatrix.Model;
+using SkillMatrix.Models;
 
 namespace SkillMatrix.Controllers
 {
@@ -15,12 +16,13 @@ namespace SkillMatrix.Controllers
         {
             _context = context;
         }
-        [HttpGet]
+        [HttpGet("GetTestDriven")]
+        
         public async Task<IEnumerable<TestDrivenDevelopment>> Get()
         {
             return await _context.TestDrivenDevelopments.ToListAsync();
         }
-        [HttpPost]
+        [HttpPost("AddTestDriven")]
         public async Task<TestDrivenDevelopment> AddTestDriven(TestDrivenDevelopment testDrivenDevelopment)
         {
   
@@ -33,21 +35,20 @@ namespace SkillMatrix.Controllers
         return testDrivenDevelopment;
         }
 
-        [HttpDelete]
-        public async Task<bool> DeleteTestDriven(int testDrivenId)
+        [HttpDelete("DeleteTestDriven")]
+        public async Task<ActionResult> DeleteTestDriven(int testDrivenId)
         {
-            bool isDeleted = false;
-            
-                if (testDrivenId == 0)
-                    return isDeleted;
-                var testDriven = await _context.TestDrivenDevelopments.FirstOrDefaultAsync(m => m.TestDrivenId == testDrivenId);
-                if (testDriven == null)
-                    return isDeleted;
-                _context.TestDrivenDevelopments.Remove(testDriven);
-                await _context.SaveChangesAsync();
-                isDeleted = true;
-            
-            return isDeleted;
+
+            var testdriven = _context.TestDrivenDevelopments.Find(testDrivenId);
+            _context.TestDrivenDevelopments.Remove(testdriven);
+            _context.SaveChanges();
+            return Ok(
+                new ResponseGlobal()
+                {
+                    ResponseCode = ((int)System.Net.HttpStatusCode.OK),
+                    Message = "Test Driven Deleted Successfully",
+                    Data = true
+                });
         }
     }
 }

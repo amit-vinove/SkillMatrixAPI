@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SkillMatrix.Data;
 using SkillMatrix.Model;
+using SkillMatrix.Models;
 
 namespace SkillMatrix.Controllers
 {
@@ -15,12 +16,12 @@ namespace SkillMatrix.Controllers
         {
             _context = context;
         }
-        [HttpGet]
+        [HttpGet("GetBehaviourDriven")]
         public async Task<IEnumerable<BehaviourDrivenDevelopment>> Get()
         {
             return await _context.BehaviourDrivenDevelopments.ToListAsync();
         }
-        [HttpPost]
+        [HttpPost("AddBehaviourDriven")]
         public async Task<BehaviourDrivenDevelopment> AddBehaviourDriven(BehaviourDrivenDevelopment behaviourDrivenDevelopment)
         {
 
@@ -33,21 +34,19 @@ namespace SkillMatrix.Controllers
             return behaviourDrivenDevelopment;
         }
 
-        [HttpDelete]
-        public async Task<bool> DeleteBehaviourDriven(int behaviourtDrivenId)
+        [HttpDelete("DeleteBehaviourDriven")]
+        public async Task<ActionResult> DeleteBehaviourDriven(int behaviourDrivenId)
         {
-            bool isDeleted = false;
-
-            if (behaviourtDrivenId == 0)
-                return isDeleted;
-            var behaviourDriven = await _context.BehaviourDrivenDevelopments.FirstOrDefaultAsync(m => m.BehaviourDrivenId == behaviourtDrivenId);
-            if (behaviourDriven == null)
-                return isDeleted;
-            _context.BehaviourDrivenDevelopments.Remove(behaviourDriven);
-            await _context.SaveChangesAsync();
-            isDeleted = true;
-
-            return isDeleted;
+            var behaviourdriven = _context.BehaviourDrivenDevelopments.Find(behaviourDrivenId);
+            _context.BehaviourDrivenDevelopments.Remove(behaviourdriven);
+            _context.SaveChanges();
+            return Ok(
+                new ResponseGlobal()
+                {
+                    ResponseCode = ((int)System.Net.HttpStatusCode.OK),
+                    Message = "Behaviour Deleted Successfully",
+                    Data = true
+                });
         }
     }
 }
