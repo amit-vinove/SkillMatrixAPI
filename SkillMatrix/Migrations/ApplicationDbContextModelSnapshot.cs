@@ -21,6 +21,28 @@ namespace SkillMatrix.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("SkillMatrix.Model.BehaviourDrivenDevelopment", b =>
+                {
+                    b.Property<int>("BehaviourDrivenId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BehaviourDrivenId"), 1L, 1);
+
+                    b.Property<int>("Cucumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Maven")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserApproach")
+                        .HasColumnType("int");
+
+                    b.HasKey("BehaviourDrivenId");
+
+                    b.ToTable("BehaviourDrivenDevelopments");
+                });
+
             modelBuilder.Entity("SkillMatrix.Model.Employee", b =>
                 {
                     b.Property<int>("Id")
@@ -85,6 +107,67 @@ namespace SkillMatrix.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("SkillMatrix.Model.TestDrivenDevelopment", b =>
+                {
+                    b.Property<int>("TestDrivenId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TestDrivenId"), 1L, 1);
+
+                    b.Property<int>("AdaptabilityFlexibility")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CriticalAnalytical")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerFocus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DemonstratesTeamwork")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmpId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InterpersonalSkills")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LeadershipSkills")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Management")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NegotiationSkills")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OralCommunication")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlanningOrganizing")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PresentationSkills")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProblemSolvingSkills")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProcessConformance")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TakesInitiative")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WrittenCommunication")
+                        .HasColumnType("int");
+
+                    b.HasKey("TestDrivenId");
+
+                    b.ToTable("TestDrivenDevelopments");
                 });
 
             modelBuilder.Entity("SkillMatrix.Model.Users", b =>
