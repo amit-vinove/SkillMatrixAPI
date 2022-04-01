@@ -20,6 +20,8 @@ namespace SkillMatrix.Data
         public DbSet<Devop> Devops { get; set; }
         public DbSet<SqlServer> SqlServers { get; set; }
         public DbSet<WebService> WebServices { get; set; }
+        public DbSet<AdditionalSkill> AdditionalSkills { get; set; }
+        public DbSet<AllAdditionalSkill> AllAdditionalSkills { get; set; }
 
     }
 }
