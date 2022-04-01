@@ -25,6 +25,10 @@ namespace SkillMatrix.Data
         public DbSet<WebService> WebServices { get; set; }
         public DbSet<AdditionalSkill> AdditionalSkills { get; set; }
         public DbSet<AllAdditionalSkill> AllAdditionalSkills { get; set; }
+        public DbSet<Skills> Skills { get; set; }
+        public DbSet<Subskills> Subskills { get; set; }
+
+
 
     }
 }
