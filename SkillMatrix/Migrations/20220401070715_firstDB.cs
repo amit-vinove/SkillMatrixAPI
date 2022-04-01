@@ -4,17 +4,55 @@
 
 namespace SkillMatrix.Migrations
 {
-    public partial class initial : Migration
+    public partial class firstDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AdditionalSkills",
+                columns: table => new
+                {
+                    AdditionalSkillId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AdditionalSkillName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmpId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AdditionalSkills", x => x.AdditionalSkillId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AllAdditionalSkills",
+                columns: table => new
+                {
+                    AllAdditionalSkillId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AdditionalSkillId = table.Column<int>(type: "int", nullable: false),
+                    EmpId = table.Column<int>(type: "int", nullable: false),
+                    SingleApiCall = table.Column<int>(type: "int", nullable: false),
+                    ApolloExpress = table.Column<int>(type: "int", nullable: false),
+                    DataLoader = table.Column<int>(type: "int", nullable: false),
+                    ProressiveWebAppDev = table.Column<int>(type: "int", nullable: false),
+                    Wpf = table.Column<int>(type: "int", nullable: false),
+                    Sitecore = table.Column<int>(type: "int", nullable: false),
+                    Xamarin = table.Column<int>(type: "int", nullable: false),
+                    KenticoCms = table.Column<int>(type: "int", nullable: false),
+                    UmbracoCms = table.Column<int>(type: "int", nullable: false),
+                    Microservices = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AllAdditionalSkills", x => x.AllAdditionalSkillId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "BasicFoundation",
                 columns: table => new
                 {
                     BasicFoundId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EmployeeId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
                     TFS = table.Column<int>(type: "int", nullable: false),
                     GIT_OR_REVISION_CONTROL = table.Column<int>(type: "int", nullable: false),
                     JIRA_OR_AGILE_PRACTICES = table.Column<int>(type: "int", nullable: false),
@@ -35,11 +73,27 @@ namespace SkillMatrix.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Cucumber = table.Column<int>(type: "int", nullable: false),
                     Maven = table.Column<int>(type: "int", nullable: false),
-                    UserApproach = table.Column<int>(type: "int", nullable: false)
+                    UserApproach = table.Column<int>(type: "int", nullable: false),
+                    EmpId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BehaviourDrivenDevelopments", x => x.BehaviourDrivenId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cloud",
+                columns: table => new
+                {
+                    CloudId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    Azure = table.Column<int>(type: "int", nullable: false),
+                    AWS = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cloud", x => x.CloudId);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,7 +141,7 @@ namespace SkillMatrix.Migrations
                 {
                     GenericId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EmployeeId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
                     Oral_Communication = table.Column<int>(type: "int", nullable: false),
                     Written_Communication = table.Column<int>(type: "int", nullable: false),
                     Process_Conformance = table.Column<int>(type: "int", nullable: false),
@@ -107,6 +161,41 @@ namespace SkillMatrix.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_GenericSkills", x => x.GenericId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "JSFrontEnd",
+                columns: table => new
+                {
+                    JSFrontEndId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    HTML_CSS = table.Column<int>(type: "int", nullable: false),
+                    Jquery = table.Column<int>(type: "int", nullable: false),
+                    AngularJS = table.Column<int>(type: "int", nullable: false),
+                    ReactJS = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JSFrontEnd", x => x.JSFrontEndId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SDLCProceeses",
+                columns: table => new
+                {
+                    SDLCId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    Coding_Standards = table.Column<int>(type: "int", nullable: false),
+                    Code_Optimization_Techniques = table.Column<int>(type: "int", nullable: false),
+                    ER_Diagram = table.Column<int>(type: "int", nullable: false),
+                    Swagger_UI = table.Column<int>(type: "int", nullable: false),
+                    Postman = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SDLCProceeses", x => x.SDLCId);
                 });
 
             migrationBuilder.CreateTable(
@@ -204,10 +293,19 @@ namespace SkillMatrix.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AdditionalSkills");
+
+            migrationBuilder.DropTable(
+                name: "AllAdditionalSkills");
+
+            migrationBuilder.DropTable(
                 name: "BasicFoundation");
 
             migrationBuilder.DropTable(
                 name: "BehaviourDrivenDevelopments");
+
+            migrationBuilder.DropTable(
+                name: "Cloud");
 
             migrationBuilder.DropTable(
                 name: "Devops");
@@ -217,6 +315,12 @@ namespace SkillMatrix.Migrations
 
             migrationBuilder.DropTable(
                 name: "GenericSkills");
+
+            migrationBuilder.DropTable(
+                name: "JSFrontEnd");
+
+            migrationBuilder.DropTable(
+                name: "SDLCProceeses");
 
             migrationBuilder.DropTable(
                 name: "SqlServers");
