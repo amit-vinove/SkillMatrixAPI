@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SkillMatrix.Data;
 using SkillMatrix.Model;
+using SkillMatrix.Models;
 
 namespace SkillMatrix.Controllers
 {
@@ -31,20 +32,21 @@ namespace SkillMatrix.Controllers
             return basicFoundation;
         }
         [HttpDelete("DeleteBasicFoundationById")]
-        public async Task<bool> DeleteBasicFoundation(int basicFoundationId)
+        public async Task<ActionResult> DeleteBasicFoundation(int basicFoundationId)
         {
-            bool isDeleted = false;
-
-            if (basicFoundationId == 0)
-                return isDeleted;
-
-            var basicFoundation = await _context.BasicFoundation.FirstOrDefaultAsync(m => m.BasicFoundId == basicFoundationId);
-            if (basicFoundation == null)
-                return isDeleted;
+            var basicFoundation = _context.BasicFoundation.Find(basicFoundationId);
             _context.BasicFoundation.Remove(basicFoundation);
-            await _context.SaveChangesAsync();
-            isDeleted = true;
-            return isDeleted;
+            _context.SaveChanges();
+            return Ok(
+                new ResponseGlobal()
+                {
+                    ResponseCode = ((int)System.Net.HttpStatusCode.OK),
+                    Message = "BasicFoundation Deleted Successfully",
+                    Data = true
+
+                }
+                );
+
         }
     }
 }

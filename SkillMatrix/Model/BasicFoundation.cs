@@ -6,7 +6,7 @@ namespace SkillMatrix.Model
     {
         [Key]
         public int BasicFoundId { get; set; }
-        public string EmployeeId { get; set; }
+        public int EmployeeId { get; set; }
         public int TFS { get; set; }
         public int GIT_OR_REVISION_CONTROL {get; set;}
         public int JIRA_OR_AGILE_PRACTICES { get; set; }

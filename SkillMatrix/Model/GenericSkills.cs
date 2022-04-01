@@ -6,7 +6,7 @@ namespace SkillMatrix.Model
     {
         [Key]
         public int GenericId { get; set; }
-        public string EmployeeId { get; set; }
+        public int EmployeeId { get; set; }
         public int Oral_Communication { get; set; }
         public int Written_Communication { get; set; }
         public int Process_Conformance { get; set; }
