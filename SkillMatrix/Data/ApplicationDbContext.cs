@@ -15,6 +15,8 @@ namespace SkillMatrix.Data
         public DbSet<Team> Teams { get; set; }
         public DbSet<TestDrivenDevelopment> TestDrivenDevelopments { get; set; }
         public DbSet<BehaviourDrivenDevelopment> BehaviourDrivenDevelopments { get; set; }
+        public DbSet<GenericSkills> GenericSkills { get; set; }
+        public DbSet<BasicFoundation> BasicFoundation { get; set; }
 
 
 
