@@ -11,8 +11,8 @@ using SkillMatrix.Data;
 namespace SkillMatrix.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220331105250_IN")]
-    partial class IN
+    [Migration("20220401055439_h")]
+    partial class h
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,6 +22,41 @@ namespace SkillMatrix.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("SkillMatrix.Model.BasicFoundation", b =>
+                {
+                    b.Property<int>("BasicFoundId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BasicFoundId"), 1L, 1);
+
+                    b.Property<int>("BEST_PRACTICES")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmployeeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GIT_OR_REVISION_CONTROL")
+                        .HasColumnType("int");
+
+                    b.Property<int>("JIRA_OR_AGILE_PRACTICES")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SERVER_UPLOADS_OR_MANAGEMENT")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TFS")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UNIT_TESTING")
+                        .HasColumnType("int");
+
+                    b.HasKey("BasicFoundId");
+
+                    b.ToTable("BasicFoundation");
+                });
 
             modelBuilder.Entity("SkillMatrix.Model.BehaviourDrivenDevelopment", b =>
                 {
@@ -43,6 +78,34 @@ namespace SkillMatrix.Migrations
                     b.HasKey("BehaviourDrivenId");
 
                     b.ToTable("BehaviourDrivenDevelopments");
+                });
+
+            modelBuilder.Entity("SkillMatrix.Model.Devop", b =>
+                {
+                    b.Property<int>("DevopId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DevopId"), 1L, 1);
+
+                    b.Property<int>("CiCd")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CiCdDevopPractice")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DockerKubernetes")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmpId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WebDb")
+                        .HasColumnType("int");
+
+                    b.HasKey("DevopId");
+
+                    b.ToTable("Devops");
                 });
 
             modelBuilder.Entity("SkillMatrix.Model.Employee", b =>
@@ -92,6 +155,96 @@ namespace SkillMatrix.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("SkillMatrix.Model.GenericSkills", b =>
+                {
+                    b.Property<int>("GenericId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GenericId"), 1L, 1);
+
+                    b.Property<int>("Adaptability_And_Flexibility")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Critical_and_Analytical_Thinking")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Customer_Focus")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Demonstrate_Teamwork")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmployeeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Interpersonal_Skills")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Leadership_Skills")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Management")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Negotiation_Skills")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Oral_Communication")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Planning_And_Organizing")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Presentation_skill")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Problem_Solving_Skills")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Process_Conformance")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Takes_Initiative")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Written_Communication")
+                        .HasColumnType("int");
+
+                    b.HasKey("GenericId");
+
+                    b.ToTable("GenericSkills");
+                });
+
+            modelBuilder.Entity("SkillMatrix.Model.SqlServer", b =>
+                {
+                    b.Property<int>("SqlServerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SqlServerId"), 1L, 1);
+
+                    b.Property<int>("EmpId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SqlQueries")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StoredPocedure")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Triggers")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ssrs")
+                        .HasColumnType("int");
+
+                    b.HasKey("SqlServerId");
+
+                    b.ToTable("SqlServers");
                 });
 
             modelBuilder.Entity("SkillMatrix.Model.Team", b =>
@@ -198,6 +351,34 @@ namespace SkillMatrix.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("SkillMatrix.Model.WebService", b =>
+                {
+                    b.Property<int>("WebServiceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WebServiceId"), 1L, 1);
+
+                    b.Property<int>("EmpId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Soap")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ThirdParty")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Wcf")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WebApi")
+                        .HasColumnType("int");
+
+                    b.HasKey("WebServiceId");
+
+                    b.ToTable("WebServices");
                 });
 #pragma warning restore 612, 618
         }
