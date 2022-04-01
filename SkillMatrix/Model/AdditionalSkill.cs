@@ -8,6 +8,7 @@ namespace SkillMatrix.Model
         public int AdditionalSkillId { get; set; }
         public string AdditionalSkillName { get; set; }
         public int EmpId { get; set; }
+        public bool isApproved { get; set; }
 
     }   
 }

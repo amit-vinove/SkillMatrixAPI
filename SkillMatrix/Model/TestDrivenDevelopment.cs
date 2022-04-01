@@ -22,6 +22,7 @@ namespace SkillMatrix.Model
         public int PlanningOrganizing { get; set; }
         public int NegotiationSkills { get; set; }
         public int ProblemSolvingSkills { get; set; }
+        public bool isApproved { get; set; }
 
     }
 }

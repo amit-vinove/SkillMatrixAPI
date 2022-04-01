@@ -6,5 +6,6 @@
         public int EmployeeId { get; set; } 
         public int Azure { get; set; }
         public int AWS { get; set; }
+        public bool isApproved { get; set; }
     }
 }

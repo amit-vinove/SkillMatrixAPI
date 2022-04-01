@@ -16,10 +16,7 @@ namespace SkillMatrix.Model
         public string Designation { get; set; }
         public bool Status { get; set; }
         public int UserId { get; set; }
-
-
-
-
+        public bool isApproved { get; set; }
 
     }
 }

@@ -13,6 +13,7 @@ namespace SkillMatrix.Model
         public int SERVER_UPLOADS_OR_MANAGEMENT { get; set; }
         public int BEST_PRACTICES { get; set;}
         public int UNIT_TESTING { get; set; }
+        public bool isApproved { get; set; }
 
     }
 }

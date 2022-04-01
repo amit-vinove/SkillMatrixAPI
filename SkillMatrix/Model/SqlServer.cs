@@ -11,5 +11,6 @@ namespace SkillMatrix.Model
         public int Triggers { get; set; }
         public int ssrs { get; set; }
         public int EmpId { get; set; }
+        public bool isApproved { get; set; }
     }
 }

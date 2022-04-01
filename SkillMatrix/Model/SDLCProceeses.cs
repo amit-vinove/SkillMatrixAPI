@@ -11,6 +11,7 @@ namespace SkillMatrix.Model
         public int Code_Optimization_Techniques { get; set; }
         public int ER_Diagram { get; set; }
         public int Swagger_UI { get; set; }
-        public int Postman { get; set; }    
+        public int Postman { get; set; }
+        public bool isApproved { get; set; }
     }
 }

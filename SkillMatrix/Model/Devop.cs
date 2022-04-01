@@ -11,5 +11,6 @@ namespace SkillMatrix.Model
         public int CiCd { get; set; }
         public int CiCdDevopPractice { get; set; }
         public int EmpId { get; set; }
+        public bool isApproved { get; set; }
     }
 }

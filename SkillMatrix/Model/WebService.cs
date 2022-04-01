@@ -11,5 +11,6 @@ namespace SkillMatrix.Model
         public int Soap { get; set; }
         public int ThirdParty { get; set; }
         public int EmpId { get; set; }
+        public bool isApproved { get; set; }
     }
 }

@@ -11,5 +11,6 @@ namespace SkillMatrix.Model
         public int Jquery { get; set; } 
         public int AngularJS { get; set; }
         public int ReactJS { get; set; }
+        public bool isApproved { get; set; }
     }
 }
