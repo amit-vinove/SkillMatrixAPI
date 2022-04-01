@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SkillMatrix.Data;
 using SkillMatrix.Model;
+using SkillMatrix.Models;
 
 namespace SkillMatrix.Controllers
 {
@@ -32,20 +33,22 @@ namespace SkillMatrix.Controllers
             return genericSkills;
         }
         [HttpDelete("DeleteGenericSkillById")]
-        public async Task<bool> DeleteGenericSkill(int genericskillsId)
+        public async Task<ActionResult> DeleteGenericSkill(int genericskillsId)
         {
-            bool isDeleted = false;
+            var genericSkill = _context.GenericSkills.Find(genericskillsId);
+            _context.GenericSkills.Remove(genericSkill);
+            _context.SaveChanges();
+            return Ok(
+                new ResponseGlobal()
+                {
+                    ResponseCode = ((int)System.Net.HttpStatusCode.OK),
+                    Message = "GenericSkills Deleted Successfully",
+                    Data = true
 
-              if (genericskillsId == 0)
-                 return isDeleted;
+                }
+                );
 
-              var genericSkills = await _context.GenericSkills.FirstOrDefaultAsync(m => m.GenericId == genericskillsId);
-              if(genericSkills == null)
-                  return isDeleted;
-              _context.GenericSkills.Remove(genericSkills);
-              await _context.SaveChangesAsync();
-            isDeleted = true;
-         return isDeleted;
+
         }
     }
 }

@@ -9,6 +9,7 @@ namespace SkillMatrix.Model
         public int Cucumber { get; set; }
         public int Maven { get; set; }
         public int UserApproach { get; set; }
+        public int EmpId { get; set; }
 
     }
 }
