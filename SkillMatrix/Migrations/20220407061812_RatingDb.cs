@@ -4,7 +4,7 @@
 
 namespace SkillMatrix.Migrations
 {
-    public partial class ratingsUpdated : Migration
+    public partial class RatingDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

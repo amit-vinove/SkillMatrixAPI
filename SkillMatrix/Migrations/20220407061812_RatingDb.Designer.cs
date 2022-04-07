@@ -11,8 +11,8 @@ using SkillMatrix.Data;
 namespace SkillMatrix.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220401100104_FirstDB")]
-    partial class FirstDB
+    [Migration("20220407061812_RatingDb")]
+    partial class RatingDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -35,12 +35,6 @@ namespace SkillMatrix.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmpId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("isApproved")
-                        .HasColumnType("bit");
-
                     b.HasKey("AdditionalSkillId");
 
                     b.ToTable("AdditionalSkills");
@@ -61,18 +55,34 @@ namespace SkillMatrix.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("EmpId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("isApproved")
-                        .HasColumnType("bit");
-
                     b.HasKey("AllAdditionalSkillId");
 
                     b.ToTable("AllAdditionalSkills");
+                });
+
+            modelBuilder.Entity("SkillMatrix.Model.AllAdditionalSkillRatings", b =>
+                {
+                    b.Property<int>("AllAdditionalSkillRatingsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AllAdditionalSkillRatingsId"), 1L, 1);
+
+                    b.Property<int>("AllAdditionalSkillId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmpId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Ratings")
+                        .HasColumnType("int");
+
+                    b.HasKey("AllAdditionalSkillRatingsId");
+
+                    b.ToTable("AllAdditionalSkillRatings");
                 });
 
             modelBuilder.Entity("SkillMatrix.Model.BasicFoundation", b =>
@@ -385,12 +395,6 @@ namespace SkillMatrix.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SkillId"), 1L, 1);
 
-                    b.Property<int>("EmpId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsApproved")
-                        .HasColumnType("bit");
-
                     b.Property<string>("SkillName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -434,13 +438,13 @@ namespace SkillMatrix.Migrations
                     b.ToTable("SqlServers");
                 });
 
-            modelBuilder.Entity("SkillMatrix.Model.Subskills", b =>
+            modelBuilder.Entity("SkillMatrix.Model.SubskillRatings", b =>
                 {
-                    b.Property<int>("SubskillsId")
+                    b.Property<int>("SubskillRatingsId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubskillsId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubskillRatingsId"), 1L, 1);
 
                     b.Property<int>("EmpId")
                         .HasColumnType("int");
@@ -450,6 +454,22 @@ namespace SkillMatrix.Migrations
 
                     b.Property<int>("Ratings")
                         .HasColumnType("int");
+
+                    b.Property<int>("SubskillId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SubskillRatingsId");
+
+                    b.ToTable("SubskillRatings");
+                });
+
+            modelBuilder.Entity("SkillMatrix.Model.Subskills", b =>
+                {
+                    b.Property<int>("SubskillsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubskillsId"), 1L, 1);
 
                     b.Property<int>("SkillId")
                         .HasColumnType("int");
