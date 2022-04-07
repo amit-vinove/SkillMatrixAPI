@@ -11,8 +11,8 @@ using SkillMatrix.Data;
 namespace SkillMatrix.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220401070715_firstDB")]
-    partial class firstDB
+    [Migration("20220401100104_FirstDB")]
+    partial class FirstDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,6 +38,9 @@ namespace SkillMatrix.Migrations
                     b.Property<int>("EmpId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("isApproved")
+                        .HasColumnType("bit");
+
                     b.HasKey("AdditionalSkillId");
 
                     b.ToTable("AdditionalSkills");
@@ -54,38 +57,18 @@ namespace SkillMatrix.Migrations
                     b.Property<int>("AdditionalSkillId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ApolloExpress")
-                        .HasColumnType("int");
-
-                    b.Property<int>("DataLoader")
-                        .HasColumnType("int");
+                    b.Property<string>("AllAdditionalSkillName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("EmpId")
                         .HasColumnType("int");
 
-                    b.Property<int>("KenticoCms")
+                    b.Property<int>("Rating")
                         .HasColumnType("int");
 
-                    b.Property<int>("Microservices")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProressiveWebAppDev")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SingleApiCall")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Sitecore")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UmbracoCms")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Wpf")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Xamarin")
-                        .HasColumnType("int");
+                    b.Property<bool>("isApproved")
+                        .HasColumnType("bit");
 
                     b.HasKey("AllAdditionalSkillId");
 
@@ -121,6 +104,9 @@ namespace SkillMatrix.Migrations
                     b.Property<int>("UNIT_TESTING")
                         .HasColumnType("int");
 
+                    b.Property<bool>("isApproved")
+                        .HasColumnType("bit");
+
                     b.HasKey("BasicFoundId");
 
                     b.ToTable("BasicFoundation");
@@ -146,6 +132,9 @@ namespace SkillMatrix.Migrations
                     b.Property<int>("UserApproach")
                         .HasColumnType("int");
 
+                    b.Property<bool>("isApproved")
+                        .HasColumnType("bit");
+
                     b.HasKey("BehaviourDrivenId");
 
                     b.ToTable("BehaviourDrivenDevelopments");
@@ -167,6 +156,9 @@ namespace SkillMatrix.Migrations
 
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("isApproved")
+                        .HasColumnType("bit");
 
                     b.HasKey("CloudId");
 
@@ -195,6 +187,9 @@ namespace SkillMatrix.Migrations
 
                     b.Property<int>("WebDb")
                         .HasColumnType("int");
+
+                    b.Property<bool>("isApproved")
+                        .HasColumnType("bit");
 
                     b.HasKey("DevopId");
 
@@ -244,6 +239,9 @@ namespace SkillMatrix.Migrations
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("isApproved")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -306,6 +304,9 @@ namespace SkillMatrix.Migrations
                     b.Property<int>("Written_Communication")
                         .HasColumnType("int");
 
+                    b.Property<bool>("isApproved")
+                        .HasColumnType("bit");
+
                     b.HasKey("GenericId");
 
                     b.ToTable("GenericSkills");
@@ -333,6 +334,9 @@ namespace SkillMatrix.Migrations
 
                     b.Property<int>("ReactJS")
                         .HasColumnType("int");
+
+                    b.Property<bool>("isApproved")
+                        .HasColumnType("bit");
 
                     b.HasKey("JSFrontEndId");
 
@@ -365,9 +369,38 @@ namespace SkillMatrix.Migrations
                     b.Property<int>("Swagger_UI")
                         .HasColumnType("int");
 
+                    b.Property<bool>("isApproved")
+                        .HasColumnType("bit");
+
                     b.HasKey("SDLCId");
 
                     b.ToTable("SDLCProceeses");
+                });
+
+            modelBuilder.Entity("SkillMatrix.Model.Skills", b =>
+                {
+                    b.Property<int>("SkillId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SkillId"), 1L, 1);
+
+                    b.Property<int>("EmpId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SkillName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SkillId");
+
+                    b.ToTable("Skills");
                 });
 
             modelBuilder.Entity("SkillMatrix.Model.SqlServer", b =>
@@ -390,12 +423,44 @@ namespace SkillMatrix.Migrations
                     b.Property<int>("Triggers")
                         .HasColumnType("int");
 
+                    b.Property<bool>("isApproved")
+                        .HasColumnType("bit");
+
                     b.Property<int>("ssrs")
                         .HasColumnType("int");
 
                     b.HasKey("SqlServerId");
 
                     b.ToTable("SqlServers");
+                });
+
+            modelBuilder.Entity("SkillMatrix.Model.Subskills", b =>
+                {
+                    b.Property<int>("SubskillsId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SubskillsId"), 1L, 1);
+
+                    b.Property<int>("EmpId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Ratings")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SkillId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SubskillsName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SubskillsId");
+
+                    b.ToTable("Subskills");
                 });
 
             modelBuilder.Entity("SkillMatrix.Model.Team", b =>
@@ -471,6 +536,9 @@ namespace SkillMatrix.Migrations
                     b.Property<int>("WrittenCommunication")
                         .HasColumnType("int");
 
+                    b.Property<bool>("isApproved")
+                        .HasColumnType("bit");
+
                     b.HasKey("TestDrivenId");
 
                     b.ToTable("TestDrivenDevelopments");
@@ -526,6 +594,9 @@ namespace SkillMatrix.Migrations
 
                     b.Property<int>("WebApi")
                         .HasColumnType("int");
+
+                    b.Property<bool>("isApproved")
+                        .HasColumnType("bit");
 
                     b.HasKey("WebServiceId");
 

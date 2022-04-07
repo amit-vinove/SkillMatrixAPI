@@ -4,7 +4,7 @@
 
 namespace SkillMatrix.Migrations
 {
-    public partial class firstDB : Migration
+    public partial class FirstDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,8 @@ namespace SkillMatrix.Migrations
                     AdditionalSkillId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AdditionalSkillName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EmpId = table.Column<int>(type: "int", nullable: false)
+                    EmpId = table.Column<int>(type: "int", nullable: false),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,16 +31,9 @@ namespace SkillMatrix.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AdditionalSkillId = table.Column<int>(type: "int", nullable: false),
                     EmpId = table.Column<int>(type: "int", nullable: false),
-                    SingleApiCall = table.Column<int>(type: "int", nullable: false),
-                    ApolloExpress = table.Column<int>(type: "int", nullable: false),
-                    DataLoader = table.Column<int>(type: "int", nullable: false),
-                    ProressiveWebAppDev = table.Column<int>(type: "int", nullable: false),
-                    Wpf = table.Column<int>(type: "int", nullable: false),
-                    Sitecore = table.Column<int>(type: "int", nullable: false),
-                    Xamarin = table.Column<int>(type: "int", nullable: false),
-                    KenticoCms = table.Column<int>(type: "int", nullable: false),
-                    UmbracoCms = table.Column<int>(type: "int", nullable: false),
-                    Microservices = table.Column<int>(type: "int", nullable: false)
+                    AllAdditionalSkillName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Rating = table.Column<int>(type: "int", nullable: false),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -58,7 +52,8 @@ namespace SkillMatrix.Migrations
                     JIRA_OR_AGILE_PRACTICES = table.Column<int>(type: "int", nullable: false),
                     SERVER_UPLOADS_OR_MANAGEMENT = table.Column<int>(type: "int", nullable: false),
                     BEST_PRACTICES = table.Column<int>(type: "int", nullable: false),
-                    UNIT_TESTING = table.Column<int>(type: "int", nullable: false)
+                    UNIT_TESTING = table.Column<int>(type: "int", nullable: false),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,7 +69,8 @@ namespace SkillMatrix.Migrations
                     Cucumber = table.Column<int>(type: "int", nullable: false),
                     Maven = table.Column<int>(type: "int", nullable: false),
                     UserApproach = table.Column<int>(type: "int", nullable: false),
-                    EmpId = table.Column<int>(type: "int", nullable: false)
+                    EmpId = table.Column<int>(type: "int", nullable: false),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -89,7 +85,8 @@ namespace SkillMatrix.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     Azure = table.Column<int>(type: "int", nullable: false),
-                    AWS = table.Column<int>(type: "int", nullable: false)
+                    AWS = table.Column<int>(type: "int", nullable: false),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -106,7 +103,8 @@ namespace SkillMatrix.Migrations
                     WebDb = table.Column<int>(type: "int", nullable: false),
                     CiCd = table.Column<int>(type: "int", nullable: false),
                     CiCdDevopPractice = table.Column<int>(type: "int", nullable: false),
-                    EmpId = table.Column<int>(type: "int", nullable: false)
+                    EmpId = table.Column<int>(type: "int", nullable: false),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -128,7 +126,8 @@ namespace SkillMatrix.Migrations
                     Band = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Designation = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -156,7 +155,8 @@ namespace SkillMatrix.Migrations
                     Customer_Focus = table.Column<int>(type: "int", nullable: false),
                     Planning_And_Organizing = table.Column<int>(type: "int", nullable: false),
                     Negotiation_Skills = table.Column<int>(type: "int", nullable: false),
-                    Problem_Solving_Skills = table.Column<int>(type: "int", nullable: false)
+                    Problem_Solving_Skills = table.Column<int>(type: "int", nullable: false),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -173,7 +173,8 @@ namespace SkillMatrix.Migrations
                     HTML_CSS = table.Column<int>(type: "int", nullable: false),
                     Jquery = table.Column<int>(type: "int", nullable: false),
                     AngularJS = table.Column<int>(type: "int", nullable: false),
-                    ReactJS = table.Column<int>(type: "int", nullable: false)
+                    ReactJS = table.Column<int>(type: "int", nullable: false),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -191,11 +192,28 @@ namespace SkillMatrix.Migrations
                     Code_Optimization_Techniques = table.Column<int>(type: "int", nullable: false),
                     ER_Diagram = table.Column<int>(type: "int", nullable: false),
                     Swagger_UI = table.Column<int>(type: "int", nullable: false),
-                    Postman = table.Column<int>(type: "int", nullable: false)
+                    Postman = table.Column<int>(type: "int", nullable: false),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SDLCProceeses", x => x.SDLCId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Skills",
+                columns: table => new
+                {
+                    SkillId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SkillName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    EmpId = table.Column<int>(type: "int", nullable: false),
+                    TeamId = table.Column<int>(type: "int", nullable: false),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Skills", x => x.SkillId);
                 });
 
             migrationBuilder.CreateTable(
@@ -208,11 +226,29 @@ namespace SkillMatrix.Migrations
                     SqlQueries = table.Column<int>(type: "int", nullable: false),
                     Triggers = table.Column<int>(type: "int", nullable: false),
                     ssrs = table.Column<int>(type: "int", nullable: false),
-                    EmpId = table.Column<int>(type: "int", nullable: false)
+                    EmpId = table.Column<int>(type: "int", nullable: false),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_SqlServers", x => x.SqlServerId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Subskills",
+                columns: table => new
+                {
+                    SubskillsId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SubskillsName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Ratings = table.Column<int>(type: "int", nullable: false),
+                    EmpId = table.Column<int>(type: "int", nullable: false),
+                    SkillId = table.Column<int>(type: "int", nullable: false),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Subskills", x => x.SubskillsId);
                 });
 
             migrationBuilder.CreateTable(
@@ -249,7 +285,8 @@ namespace SkillMatrix.Migrations
                     CustomerFocus = table.Column<int>(type: "int", nullable: false),
                     PlanningOrganizing = table.Column<int>(type: "int", nullable: false),
                     NegotiationSkills = table.Column<int>(type: "int", nullable: false),
-                    ProblemSolvingSkills = table.Column<int>(type: "int", nullable: false)
+                    ProblemSolvingSkills = table.Column<int>(type: "int", nullable: false),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -282,7 +319,8 @@ namespace SkillMatrix.Migrations
                     Wcf = table.Column<int>(type: "int", nullable: false),
                     Soap = table.Column<int>(type: "int", nullable: false),
                     ThirdParty = table.Column<int>(type: "int", nullable: false),
-                    EmpId = table.Column<int>(type: "int", nullable: false)
+                    EmpId = table.Column<int>(type: "int", nullable: false),
+                    isApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -323,7 +361,13 @@ namespace SkillMatrix.Migrations
                 name: "SDLCProceeses");
 
             migrationBuilder.DropTable(
+                name: "Skills");
+
+            migrationBuilder.DropTable(
                 name: "SqlServers");
+
+            migrationBuilder.DropTable(
+                name: "Subskills");
 
             migrationBuilder.DropTable(
                 name: "Teams");
