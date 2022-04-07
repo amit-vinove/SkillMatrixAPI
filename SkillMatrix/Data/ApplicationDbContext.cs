@@ -28,6 +28,12 @@ namespace SkillMatrix.Data
         public DbSet<Skills> Skills { get; set; }
         public DbSet<Subskills> Subskills { get; set; }
 
+        public DbSet<SubskillRatings> SubskillRatings { get; set; }
+
+        public DbSet<AllAdditionalSkillRatings> AllAdditionalSkillRatings { get; set; }
+
+
+
 
 
     }
