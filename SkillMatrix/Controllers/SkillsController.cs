@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SkillMatrix.Data;
 using SkillMatrix.Model;
 using SkillMatrix.Models;
@@ -23,6 +24,14 @@ namespace SkillMatrix.Controllers
         {
             var skills = _db.Skills.ToList();
             return skills;
+        }
+        [HttpGet("GetAllSkillsInTeam")]
+        public async Task<IEnumerable<Skills>> GetAllSkillsInTeam(int teamId)
+        {
+           
+            var skills= await _db.Skills.Where(m => m.TeamId == teamId).ToListAsync();
+            return skills;
+            
         }
 
         [HttpPost("AddSkill")]

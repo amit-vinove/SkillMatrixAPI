@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SkillMatrix.Data;
 using SkillMatrix.Model;
 using SkillMatrix.Models;
@@ -24,7 +25,7 @@ namespace SkillMatrix.Controllers
             var subSkillRatings = _db.SubskillRatings.ToList();
             return subSkillRatings;
         }
-
+        
         [HttpPost("AddSubskillRatings")]
         public SubskillRatings CreateSkills(SubskillRatings subskillRatings)
         {
