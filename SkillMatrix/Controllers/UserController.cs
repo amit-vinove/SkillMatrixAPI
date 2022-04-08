@@ -74,7 +74,7 @@ namespace SkillMatrix.Controllers
                 {
                     ResponseCode = ((int)System.Net.HttpStatusCode.OK),
                     Message = "Logged In",
-                    Data = true
+                    Data = user.UserId
                 });
         }
 

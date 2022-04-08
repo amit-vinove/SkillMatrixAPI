@@ -23,6 +23,34 @@ namespace SkillMatrix.Controllers
         {
             return _context.GenericSkills.ToList();
         }
+
+        [HttpGet("GetGenericSkillByEmpId")]
+        public async Task<ActionResult> GetGenericByEmpId(int empId)
+        {
+            var genericSkill = _context.GenericSkills.FirstOrDefault(m => m.EmployeeId == empId);
+            if (genericSkill == null)
+            {
+                return Ok(
+                    new ResponseGlobal()
+                    {
+                        ResponseCode = ((int)System.Net.HttpStatusCode.BadRequest),
+                        Message = "GenericSkils Not Found",
+                        Data = false
+
+                    }
+                    );
+            }
+            return Ok(
+                new ResponseGlobal()
+                {
+                    ResponseCode = ((int)System.Net.HttpStatusCode.OK),
+                    Message = "GenericSkills Fetched Successfully",
+                    Data = genericSkill
+
+                }
+                );
+        }
+
         [HttpPost("CreateGenericSkills")]
         public async Task<GenericSkills> AddGenericSKills(GenericSkills genericSkills)
         {
