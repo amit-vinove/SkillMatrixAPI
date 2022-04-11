@@ -48,5 +48,21 @@ namespace SkillMatrix.Controllers
                 Data = true
             });
         }
+
+        [HttpGet("GetSubSkillsBySkillId")]
+        public IEnumerable<SubSkillsViewModel> GetSubSkillsBySkillId(int skillId)
+        {
+            var skills = (from skillsDb in _db.Skills 
+                         join subSkillsDb in _db.SubSkills on 
+                         skillsDb.SkillId equals subSkillsDb.SkillId
+                         where subSkillsDb.SkillId == skillId
+                         select new SubSkillsViewModel()
+                         {
+                             SkillsId = skillsDb.SkillId,
+                             SkillName = skillsDb.SkillName,
+                             SubSkillName = subSkillsDb.SubskillName
+                         }).ToList();
+            return skills;
+        }
     }
 }
