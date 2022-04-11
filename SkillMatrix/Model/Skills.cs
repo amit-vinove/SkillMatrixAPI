@@ -7,6 +7,7 @@ namespace SkillMatrix.Model
         [Key]
         public int SkillId { get; set; }
         public string SkillName { get; set; }
+        public string SkillLogo { get; set; }
 
     }
 }
