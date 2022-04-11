@@ -7,7 +7,7 @@ namespace SkillMatrix.Model
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-        public string EmployeeId { get; set; }
+        public string EmployeeCode { get; set; }
         public int ReportingManager { get; set; }
         public string Location { get; set; }    
         public string Department { get; set; }

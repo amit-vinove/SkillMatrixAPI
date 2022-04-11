@@ -11,7 +11,5 @@ namespace SkillMatrix.Model
         public int EmpId { get; set; }
         public bool IsApproved { get; set; }
 
-
-
     }
 }

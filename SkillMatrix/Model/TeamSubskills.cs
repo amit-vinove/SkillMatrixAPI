@@ -8,8 +8,5 @@ namespace SkillMatrix.Model
         public int TeamSubskillsId { get; set; }
         public string TeamSubskillsName { get; set; }
         public int SkillId { get; set; }
-
-
-
     }
 }
