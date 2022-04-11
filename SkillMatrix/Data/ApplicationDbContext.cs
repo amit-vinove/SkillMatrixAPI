@@ -13,25 +13,15 @@ namespace SkillMatrix.Data
         public DbSet<Users> Users { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Team> Teams { get; set; }
-        public DbSet<TestDrivenDevelopment> TestDrivenDevelopments { get; set; }
-        public DbSet<BehaviourDrivenDevelopment> BehaviourDrivenDevelopments { get; set; }
-        public DbSet<GenericSkills> GenericSkills { get; set; }
-        public DbSet<BasicFoundation> BasicFoundation { get; set; }
-        public DbSet<SDLCProceeses> SDLCProceeses { get; set; }
-        public DbSet<JSFrontEnd> JSFrontEnd { get; set; }
-        public DbSet<Cloud> Cloud { get; set; }
-        public DbSet<Devop> Devops { get; set; }
-        public DbSet<SqlServer> SqlServers { get; set; }
-        public DbSet<WebService> WebServices { get; set; }
-        public DbSet<AdditionalSkill> AdditionalSkills { get; set; }
-        public DbSet<AllAdditionalSkill> AllAdditionalSkills { get; set; }
+        public DbSet<TeamSkills> TeamSkills { get; set; }
+        public DbSet<TeamSubskills> TeamSubskills { get; set; }
+        public DbSet<TeamSubskillRatings> TeamSubskillRatings { get; set; }
         public DbSet<Skills> Skills { get; set; }
-        public DbSet<Subskills> Subskills { get; set; }
-        public DbSet<SubskillRatings> SubskillRatings { get; set; }
-        public DbSet<AllAdditionalSkillRatings> AllAdditionalSkillRatings { get; set; }
-        public DbSet<Questions> Questions { get; set; }
-        public DbSet<SubQuestions> SubQuestions { get; set; }
-        public DbSet<SubQuestionRatings> SubQuestionRatings { get; set; }
+        public DbSet<SubSkills> SubSkills { get; set; }
+        public DbSet<SubSkillsRatings> SubSkillsRatings { get; set; }
+        public DbSet<EmployeeQuestions> EmployeeQuestions { get; set; }
+        public DbSet<EmployeeTeamQuestions> EmployeeTeamQuestions { get; set; }
+
 
 
 

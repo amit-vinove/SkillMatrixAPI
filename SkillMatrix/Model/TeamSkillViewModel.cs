@@ -3,7 +3,7 @@
     public class TeamSkillViewModel
     {
         public string TeamName { get; set; }
-        public string SkillName { get; set; }   
-        public string SubSkillsName { get; set; }
+        public string TeamSkillName { get; set; }   
+        public string TeamSubSkillsName { get; set; }
     }
 }

@@ -25,14 +25,6 @@ namespace SkillMatrix.Controllers
             var skills = _db.Skills.ToList();
             return skills;
         }
-        [HttpGet("GetAllSkillsInTeam")]
-        public async Task<IEnumerable<Skills>> GetAllSkillsInTeam(int teamId)
-        {
-           
-            var skills= await _db.Skills.Where(m => m.TeamId == teamId).ToListAsync();
-            return skills;
-            
-        }
 
         [HttpPost("AddSkill")]
         public Skills CreateSkills(Skills skill)

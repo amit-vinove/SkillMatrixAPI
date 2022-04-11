@@ -2,16 +2,13 @@
 
 namespace SkillMatrix.Model
 {
-    public class SubskillRatings
+    public class SubSkillsRatings
     {
         [Key]
-        public int SubskillRatingsId { get; set; }
-        public int SubskillId { get; set; }
-        public int Ratings {  get; set; }
+        public int SubSkillsRatingsId { get; set; }
+        public int SubSkillId { get; set; }
         public int EmpId { get; set; }
-        public bool IsApproved { get; set; }
-
-
+        public int Ratings { get; set; }
 
     }
 }

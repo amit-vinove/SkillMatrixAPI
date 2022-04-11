@@ -2,12 +2,12 @@
 
 namespace SkillMatrix.Model
 {
-    public class SubQuestions
+    public class EmployeeQuestions
     {
         [Key]
-        public int SubQuestionId { get; set; }
-        public string SubQuestionName { get; set; }
+        public int EmployeeQuestionsId { get; set; }
         public int QuestionId { get; set; }
+        public int EmpId { get; set; }
 
 
     }

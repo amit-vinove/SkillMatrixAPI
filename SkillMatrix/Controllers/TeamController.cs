@@ -47,24 +47,6 @@ namespace SkillMatrix.Controllers
             });
         }
 
-        [HttpGet("GetTeamSkills")]
-        public IEnumerable<TeamSkillViewModel> GetAllTeamSkills(int teamId)
-        {
-            var teamskillData = (from teamDB in _db.Teams
-                                 join skillsDB in _db.Skills
-                                 on teamDB.Id equals skillsDB.TeamId
-                                 join subskillsDB in _db.Subskills
-                                 on skillsDB.SkillId equals subskillsDB.SkillId
-                                 where teamDB.Id == teamId
-                                 select new TeamSkillViewModel()
-                                 {
-                                     TeamName = teamDB.Name,
-                                     SkillName = skillsDB.SkillName,
-                                     SubSkillsName = subskillsDB.SubskillsName,
-                                 }).ToList();
-
-            return teamskillData;
-        }
 
     }
 }

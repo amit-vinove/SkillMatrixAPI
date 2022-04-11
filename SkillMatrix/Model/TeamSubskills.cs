@@ -2,11 +2,14 @@
 
 namespace SkillMatrix.Model
 {
-    public class Skills
+    public class TeamSubskills
     {
         [Key]
+        public int TeamSubskillsId { get; set; }
+        public string TeamSubskillsName { get; set; }
         public int SkillId { get; set; }
-        public string SkillName { get; set; }
+
+
 
     }
 }
