@@ -25,6 +25,24 @@ namespace SkillMatrix.Controllers
             return employeeQuestions;
         }
 
+        [HttpGet("GetQuestionsByEmpId")]
+        public IEnumerable<EmployeeQuestionsViewModel> GetQuestionsByEmpId(int empId)
+        {
+            var employeeQuestions = (from empDb in _db.Employees
+                                     join empQues in _db.EmployeeQuestions on
+                                     empDb.Id equals empQues.EmpId
+                                     join skillsDb in _db.Skills on
+                                     empQues.QuestionId equals skillsDb.SkillId
+                                     where empQues.EmpId == empId
+                                     select new EmployeeQuestionsViewModel()
+                                     {
+                                         QuestionId = empQues.QuestionId,
+                                         QuestionName = skillsDb.SkillName,
+                                         EmpId = empId,
+                                     }).ToList();
+            return employeeQuestions;
+        }
+
         [HttpPost("CreateEmployeeQuestions")]
         public EmployeeQuestions CreateEmployeeQuestions(EmployeeQuestions employeeQuestions)
         {
