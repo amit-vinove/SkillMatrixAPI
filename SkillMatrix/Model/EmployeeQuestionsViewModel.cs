@@ -8,6 +8,7 @@ namespace SkillMatrix.Model
         public int QuestionId { get; set; }
         public string QuestionName { get; set; }
         public int EmpId { get; set; }
+        public string QuestionLogo { get; set; }
 
 
     }

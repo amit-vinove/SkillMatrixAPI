@@ -38,6 +38,7 @@ namespace SkillMatrix.Controllers
                                      {
                                          QuestionId = empQues.QuestionId,
                                          QuestionName = skillsDb.SkillName,
+                                         QuestionLogo = skillsDb.SkillLogo,
                                          EmpId = empId,
                                      }).ToList();
             return employeeQuestions;
