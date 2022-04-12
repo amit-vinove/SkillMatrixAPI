@@ -10,6 +10,7 @@ namespace SkillMatrix.Model
         public string Password { get; set; }
         public int Role { get; set; }
         public string RoleLevel { get; set; }
+        public int EmpId { get; set; }
 
 
 

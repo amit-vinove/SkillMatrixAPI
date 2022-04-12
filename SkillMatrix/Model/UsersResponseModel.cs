@@ -8,6 +8,7 @@ namespace SkillMatrix.Model
         public string Username { get; set; }
         public int UserRole { get; set; }
         public string UserRoleLevel { get; set; }
+        public int EmpId { get; set; }
 
     }
 }

@@ -5,7 +5,7 @@ namespace SkillMatrix.Model
     public class EmployeeViewModel
     {
         [Key]
-        public int Id { get; set; }
+        public int EmpId{ get; set; }
         public string Name { get; set; }
         public string EmployeeCode { get; set; }
         public string ReportingManager { get; set; }

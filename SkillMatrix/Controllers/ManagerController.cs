@@ -25,37 +25,17 @@ namespace SkillMatrix.Controllers
             return managers;
         }
 
-/*        [HttpGet("GetEmployeeByUserId")]
-        public async Task<ActionResult> GetEmpByUserId(int userId)
+        [HttpGet("GetManagerByUserId")]
+        public async Task<ActionResult> GetManagerByUserId(int userId)
         {
-            var EmpDetails = (from empDb in _db.Employees
-                              join userDb in _db.Users on
-                              empDb.UserId equals userDb.UserId
-                              join teamdb in _db.Teams on
-                              empDb.Team equals teamdb.Id
-                              join managerDb in _db.Managers on
-                              empDb.ReportingManager equals managerDb.Id
-                              where empDb.UserId == userId
-                              select new EmployeeViewModel()
-                              {
-                                  Id = empDb.Id,
-                                  Name = empDb.Name,
-                                  EmployeeCode = empDb.EmployeeCode,
-                                  ReportingManager = managerDb.Name,
-                                  Location = empDb.Location,
-                                  Department = empDb.Department,
-                                  Team = teamdb.Name,
-                                  Band = empDb.Band,
-                                  Designation = empDb.Designation,
-                                  Status = empDb.Status,
-                              }).ToList();
+            var ManagerDetails = _db.Managers.FirstOrDefault(m => m.UserId == userId);
 
-            if (EmpDetails == null)
+            if (ManagerDetails == null)
             {
-                return BadRequest("No Such Employee Found");
+                return BadRequest("No Such Manager Found");
             }
-            return Ok(EmpDetails);
-        }*/
+            return Ok(ManagerDetails);
+        }
 
         [HttpPost("CreateManager")]
         public Manager CreateEmployee(Manager manager)

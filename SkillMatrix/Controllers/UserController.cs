@@ -37,10 +37,6 @@ namespace SkillMatrix.Controllers
         [HttpPost("CreateUser")]
         public async Task<ActionResult> AddUser(Users newUser)
         {
-            if(newUser.Role == 0)
-            {
-                newUser.RoleLevel = "Employee";
-            }
             if (newUser.Role == 1)
             {
                 newUser.RoleLevel = "Manager";
@@ -78,7 +74,8 @@ namespace SkillMatrix.Controllers
                         UserId = user.UserId,
                         Username = user.Username,
                         UserRole = user.Role,
-                        UserRoleLevel = user.RoleLevel
+                        UserRoleLevel = user.RoleLevel,
+                        EmpId = user.EmpId
                     }
                 });
         }

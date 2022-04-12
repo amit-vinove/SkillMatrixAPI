@@ -18,7 +18,7 @@ namespace SkillMatrix.Controllers
 
         }
 
-        [HttpGet("GetAllUsers")]
+        [HttpGet("GetAllEmployee")]
         public IEnumerable<Employee> GetAllEmployee()
         {
             var employees = _db.Employees.ToList();
@@ -30,15 +30,15 @@ namespace SkillMatrix.Controllers
         {
             var EmpDetails = (from empDb in _db.Employees
                               join userDb in _db.Users on
-                              empDb.UserId equals userDb.UserId
+                              empDb.Id equals userDb.EmpId
                               join teamdb in _db.Teams on
                               empDb.Team equals teamdb.Id
                               join managerDb in _db.Managers on
                               empDb.ReportingManager equals managerDb.Id
-                              where empDb.UserId == userId
+                              where userDb.UserId == userId
                               select new EmployeeViewModel()
                               {
-                                  Id = empDb.Id,
+                                  EmpId = empDb.Id,
                                   Name = empDb.Name,
                                   EmployeeCode = empDb.EmployeeCode,
                                   ReportingManager = managerDb.Name,
@@ -48,7 +48,8 @@ namespace SkillMatrix.Controllers
                                   Band = empDb.Band,
                                   Designation = empDb.Designation,
                                   Status = empDb.Status,
-                                  UserName = userDb.Username
+                                  UserName = userDb.Username,
+                                  UserId = userId
                               }).ToList();
 
             if (EmpDetails == null)
@@ -58,12 +59,30 @@ namespace SkillMatrix.Controllers
             return Ok(EmpDetails);
         }
 
-        [HttpPost("CreateEmployee")]
+
+        [HttpPost("CreateEmp")]
         public Employee CreateEmployee(Employee employee)
         {
             _db.Employees.Add(employee);
             _db.SaveChanges();
             return employee;
+        }
+
+        [HttpPost("CreateEmployee")]
+        public Users CreateEmpoyeeUser(Employee employee)
+        {
+            var emp = CreateEmployee(employee);
+            var user = new Users
+            {
+                EmpId = emp.Id,
+                Role = 0,
+                RoleLevel = "Employee",
+                Username = emp.Email,
+                Password = emp.Password
+            };
+            _db.Users.Add(user);
+            _db.SaveChanges();
+            return user;
         }
 
         [HttpDelete("DeleteEmployee")]
