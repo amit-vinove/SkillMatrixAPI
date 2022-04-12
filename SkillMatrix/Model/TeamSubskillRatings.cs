@@ -9,7 +9,7 @@ namespace SkillMatrix.Model
         public int SubskillId { get; set; }
         public int Ratings {  get; set; }
         public int EmpId { get; set; }
-        public bool IsApproved { get; set; }
+        public int IsApproved { get; set; }
 
     }
 }

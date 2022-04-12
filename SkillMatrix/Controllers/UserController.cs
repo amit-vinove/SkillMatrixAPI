@@ -68,13 +68,18 @@ namespace SkillMatrix.Controllers
 
             if (user.Password != userLogin.Password)
                 return BadRequest("Wrong Credentails");
-
             return Ok(
                 new ResponseGlobal()
                 {
                     ResponseCode = ((int)System.Net.HttpStatusCode.OK),
                     Message = "Logged In",
-                    Data = user.UserId
+                    Data = new UsersResponseModel()
+                    {
+                        UserId = user.UserId,
+                        Username = user.Username,
+                        UserRole = user.Role,
+                        UserRoleLevel = user.RoleLevel
+                    }
                 });
         }
 
