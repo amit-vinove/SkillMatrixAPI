@@ -12,6 +12,7 @@ namespace SkillMatrix.Data
 
         public DbSet<Users> Users { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Manager> Managers { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<TeamSkills> TeamSkills { get; set; }
         public DbSet<TeamSubskills> TeamSubskills { get; set; }

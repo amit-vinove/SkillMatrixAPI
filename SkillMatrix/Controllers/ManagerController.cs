@@ -8,24 +8,24 @@ namespace SkillMatrix.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeeController : ControllerBase
+    public class ManagerController : ControllerBase
     {
         private readonly ApplicationDbContext _db;
 
-        public EmployeeController(ApplicationDbContext db)
+        public ManagerController(ApplicationDbContext db)
         {
             _db = db;
 
         }
 
-        [HttpGet("GetAllUsers")]
-        public IEnumerable<Employee> GetAllEmployee()
+        [HttpGet("GetAllManagers")]
+        public IEnumerable<Manager> GetAllEmployee()
         {
-            var employees = _db.Employees.ToList();
-            return employees;
+            var managers = _db.Managers.ToList();
+            return managers;
         }
 
-        [HttpGet("GetEmployeeByUserId")]
+/*        [HttpGet("GetEmployeeByUserId")]
         public async Task<ActionResult> GetEmpByUserId(int userId)
         {
             var EmpDetails = (from empDb in _db.Employees
@@ -48,7 +48,6 @@ namespace SkillMatrix.Controllers
                                   Band = empDb.Band,
                                   Designation = empDb.Designation,
                                   Status = empDb.Status,
-                                  UserName = userDb.Username
                               }).ToList();
 
             if (EmpDetails == null)
@@ -56,27 +55,27 @@ namespace SkillMatrix.Controllers
                 return BadRequest("No Such Employee Found");
             }
             return Ok(EmpDetails);
-        }
+        }*/
 
-        [HttpPost("CreateEmployee")]
-        public Employee CreateEmployee(Employee employee)
+        [HttpPost("CreateManager")]
+        public Manager CreateEmployee(Manager manager)
         {
-            _db.Employees.Add(employee);
+            _db.Managers.Add(manager);
             _db.SaveChanges();
-            return employee;
+            return manager;
         }
 
-        [HttpDelete("DeleteEmployee")]
-        public async Task<ActionResult> DeleteEmployee(int empId)
+        [HttpDelete("DeleteManager")]
+        public async Task<ActionResult> DeleteManager(int managerId)
         {
-           var emp = _db.Employees.Find(empId);
-            _db.Employees.Remove(emp);
+           var manager = _db.Managers.Find(managerId);
+            _db.Managers.Remove(manager);
             _db.SaveChanges();
             return Ok(
             new ResponseGlobal()
              {
                 ResponseCode = ((int)System.Net.HttpStatusCode.OK),
-                Message = "User Deleted Successfully",
+                Message = "Manager Deleted Successfully",
                 Data = true
              });
         }
