@@ -60,7 +60,8 @@ namespace SkillMatrix.Controllers
                          {
                              SkillsId = skillsDb.SkillId,
                              SkillName = skillsDb.SkillName,
-                             SubSkillName = subSkillsDb.SubskillName
+                             SubSkillName = subSkillsDb.SubskillName,
+                             SubSkillId = subSkillsDb.SubSkillsId,
                          }).ToList();
             return skills;
         }
