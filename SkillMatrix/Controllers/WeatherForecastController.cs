@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SkillMatrix.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors("AllowAllOrigins")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]

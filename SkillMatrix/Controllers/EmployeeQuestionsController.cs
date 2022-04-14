@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SkillMatrix.Data;
 using SkillMatrix.Model;
@@ -9,6 +10,7 @@ namespace SkillMatrix.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AllowAllOrigins")]
     public class EmployeeQuestionsController : ControllerBase
     {
         private readonly ApplicationDbContext _db;
