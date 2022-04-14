@@ -10,7 +10,7 @@ namespace SkillMatrix.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("AllowAllOrigins")]
+
     public class EmployeeQuestionsController : ControllerBase
     {
         private readonly ApplicationDbContext _db;
@@ -55,7 +55,7 @@ namespace SkillMatrix.Controllers
             return employeeQuestions;
         }
         [HttpPost("PostEmployeeQuestions")]
-        public IActionResult PostEmployeeQuestions(PostEmpQuestionModel model )
+        public IActionResult PostEmployeeQuestions(PostEmpQuestionViewModel model )
         {
             foreach (var item in model.Array)
             {

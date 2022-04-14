@@ -9,7 +9,7 @@ namespace SkillMatrix.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("AllowAllOrigins")]
+
     public class ManagerController : ControllerBase
     {
         private readonly ApplicationDbContext _db;
