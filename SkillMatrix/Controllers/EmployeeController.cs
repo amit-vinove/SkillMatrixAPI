@@ -9,7 +9,7 @@ namespace SkillMatrix.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("AllowAllOrigins")]
+
     public class EmployeeController : ControllerBase
     {
         private readonly ApplicationDbContext _db;
@@ -19,7 +19,7 @@ namespace SkillMatrix.Controllers
             _db = db;
 
         }
-
+ /*       getemp by RMId*/
         [HttpGet("GetAllEmployee")]
         public IEnumerable<Employee> GetAllEmployee()
         {
@@ -52,6 +52,36 @@ namespace SkillMatrix.Controllers
                                   Status = empDb.Status,
                                   UserName = userDb.Username,
                                   UserId = userId
+                              }).ToList();
+
+            if (EmpDetails == null)
+            {
+                return BadRequest("No Such Employee Found");
+            }
+            return Ok(EmpDetails);
+        }
+
+        [HttpGet("GetEmployeeByResourceManagerId")]
+        public async Task<ActionResult> GetEmpByResourceManagerId(int resourceManagerId)
+        {
+            var EmpDetails = (from empDb in _db.Employees
+                              join managerDb in _db.Managers on
+                              empDb.ReportingManager equals managerDb.Id
+                              join teamdb in _db.Teams on
+                              empDb.Team equals teamdb.Id
+                              where empDb.ReportingManager == resourceManagerId
+                              select new EmployeeViewModel()
+                              {
+                                  EmpId = empDb.Id,
+                                  Name = empDb.Name,
+                                  EmployeeCode = empDb.EmployeeCode,
+                                  ReportingManager = managerDb.Name,
+                                  Location = empDb.Location,
+                                  Department = empDb.Department,
+                                  Team = teamdb.Name,
+                                  Band = empDb.Band,
+                                  Designation = empDb.Designation,
+                                  Status = empDb.Status
                               }).ToList();
 
             if (EmpDetails == null)

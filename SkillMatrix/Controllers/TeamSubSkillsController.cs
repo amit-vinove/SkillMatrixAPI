@@ -10,7 +10,7 @@ namespace SkillMatrix.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("AllowAllOrigins")]
+
     public class TeamSubSkillsController : ControllerBase
     {
         private readonly ApplicationDbContext _db;
