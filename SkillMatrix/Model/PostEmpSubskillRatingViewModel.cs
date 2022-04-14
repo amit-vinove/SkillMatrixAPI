@@ -5,5 +5,6 @@
         
         public int[][] subskillRatingArr { get; set; }
         public int EmpId { get; set; }
+        public int SkillId { get; set; }
     }
 }
