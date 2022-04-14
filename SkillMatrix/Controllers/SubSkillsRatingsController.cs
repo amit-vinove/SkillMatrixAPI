@@ -67,6 +67,7 @@ namespace SkillMatrix.Controllers
                 temp.SubSkillId = item[0];
                 temp.Ratings = item[1];
                 temp.EmpId= EmpsubSkillRatings.EmpId;
+                temp.SkillId = EmpsubSkillRatings.SkillId;
 
                 _db.SubSkillsRatings.Add(temp);
             }
