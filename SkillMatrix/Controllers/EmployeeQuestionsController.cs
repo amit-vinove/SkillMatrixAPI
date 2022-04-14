@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SkillMatrix.Data;
 using SkillMatrix.Model;
 using SkillMatrix.Models;
+using SkillMatrixAPI.Model;
 
 namespace SkillMatrix.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableCors("AllowAllOrigins")]
     public class EmployeeQuestionsController : ControllerBase
     {
         private readonly ApplicationDbContext _db;
@@ -50,6 +53,22 @@ namespace SkillMatrix.Controllers
             _db.EmployeeQuestions.Add(employeeQuestions);
             _db.SaveChanges();
             return employeeQuestions;
+        }
+        [HttpPost("PostEmployeeQuestions")]
+        public IActionResult PostEmployeeQuestions(PostEmpQuestionModel model )
+        {
+            foreach (var item in model.Array)
+            {
+                EmployeeQuestions temp = new EmployeeQuestions();
+                temp.QuestionId = item;
+                temp.EmpId=model.EmpId;
+
+                _db.EmployeeQuestions.Add(temp);
+            }
+
+            
+            _db.SaveChanges();
+            return Ok("Successful");
         }
 
         [HttpDelete("DeleteEmployeeQuestions")]
