@@ -61,6 +61,37 @@ namespace SkillMatrix.Controllers
             return Ok(EmpDetails);
         }
 
+        [HttpGet("GetEmployeeByEmpId")]
+        public async Task<ActionResult> GetEmpByEmpId(int empId)
+        {
+            var EmpDetails = (from empDb in _db.Employees
+                              join teamdb in _db.Teams on
+                              empDb.Team equals teamdb.Id
+                              join managerDb in _db.Managers on
+                              empDb.ReportingManager equals managerDb.Id
+                              where empDb.Id == empId
+                              select new EmployeeViewModel()
+                              {
+                                  EmpId = empDb.Id,
+                                  Name = empDb.Name,
+                                  EmployeeCode = empDb.EmployeeCode,
+                                  ReportingManager = managerDb.Name,
+                                  Location = empDb.Location,
+                                  Department = empDb.Department,
+                                  Team = teamdb.Name,
+                                  Band = empDb.Band,
+                                  Designation = empDb.Designation,
+                                  Status = empDb.Status,
+                                  UserName = empDb.Email
+                              }).ToList();
+
+            if (EmpDetails == null)
+            {
+                return BadRequest("No Such Employee Found");
+            }
+            return Ok(EmpDetails);
+        }
+
         [HttpGet("GetEmployeeByResourceManagerId")]
         public async Task<ActionResult> GetEmpByResourceManagerId(int resourceManagerId)
         {
@@ -101,7 +132,7 @@ namespace SkillMatrix.Controllers
         }
 
         [HttpPost("CreateEmployee")]
-        public Users CreateEmpoyeeUser(Employee employee)
+        public Employee CreateEmpoyeeUser(Employee employee)
         {
             var emp = CreateEmployee(employee);
             var user = new Users
@@ -114,7 +145,7 @@ namespace SkillMatrix.Controllers
             };
             _db.Users.Add(user);
             _db.SaveChanges();
-            return user;
+            return emp;
         }
 
         [HttpDelete("DeleteEmployee")]

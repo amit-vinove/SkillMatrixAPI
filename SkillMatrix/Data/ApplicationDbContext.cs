@@ -1,5 +1,6 @@
 ﻿using SkillMatrix.Model;
 using Microsoft.EntityFrameworkCore;
+using SkillMatrixAPI.Model;
 
 namespace SkillMatrix.Data
 {
@@ -22,6 +23,8 @@ namespace SkillMatrix.Data
         public DbSet<SubSkillsRatings> SubSkillsRatings { get; set; }
         public DbSet<EmployeeQuestions> EmployeeQuestions { get; set; }
         public DbSet<EmployeeTeamQuestions> EmployeeTeamQuestions { get; set; }
+        public DbSet<Approvals> Approvals { get; set; }
+
 
 
 

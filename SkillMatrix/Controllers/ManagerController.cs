@@ -17,7 +17,6 @@ namespace SkillMatrix.Controllers
         public ManagerController(ApplicationDbContext db)
         {
             _db = db;
-
         }
 
         [HttpGet("GetAllManagers")]
@@ -31,6 +30,19 @@ namespace SkillMatrix.Controllers
         public async Task<ActionResult> GetManagerByUserId(int userId)
         {
             var ManagerDetails = _db.Managers.FirstOrDefault(m => m.UserId == userId);
+
+            if (ManagerDetails == null)
+            {
+                return BadRequest("No Such Manager Found");
+            }
+            return Ok(ManagerDetails);
+        }
+
+
+        [HttpGet("GetManagerByEmpId")]
+        public async Task<ActionResult> GetManagerByEmpId(int empId)
+        {
+            var ManagerDetails = _db.Managers.FirstOrDefault(m => m.Id == empId);
 
             if (ManagerDetails == null)
             {

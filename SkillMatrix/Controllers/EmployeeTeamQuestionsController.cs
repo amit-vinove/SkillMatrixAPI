@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SkillMatrix.Data;
 using SkillMatrix.Model;
 using SkillMatrix.Models;
+using SkillMatrixAPI.Model;
 
 namespace SkillMatrix.Controllers
 {
@@ -33,6 +34,22 @@ namespace SkillMatrix.Controllers
             _db.EmployeeTeamQuestions.Add(employeeTeamQuestions);
             _db.SaveChanges();
             return employeeTeamQuestions;
+        }
+
+        [HttpPost("PostEmployeeTeamQuestions")]
+        public IActionResult PostEmployeeQuestions(PostEmpTeamQuestionViewModel model)
+        {
+            foreach (var item in model.Array)
+            {
+                EmployeeTeamQuestions temp = new EmployeeTeamQuestions();
+                temp.TeamSkillsId = item;
+                temp.EmpId = model.EmpId;
+                temp.TeamId = model.TeamId;
+
+                _db.EmployeeTeamQuestions.Add(temp);
+            }
+            _db.SaveChanges();
+            return Ok("Successful");
         }
 
         [HttpDelete("DeleteEmployeeTeamQuestions")]
