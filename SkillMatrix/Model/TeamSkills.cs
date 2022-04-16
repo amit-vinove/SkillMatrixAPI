@@ -10,8 +10,5 @@ namespace SkillMatrix.Model
         public int TeamId { get; set; }
 
 
-
-
-
     }
 }
