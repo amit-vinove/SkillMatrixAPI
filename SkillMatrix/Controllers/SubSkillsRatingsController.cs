@@ -75,6 +75,16 @@ namespace SkillMatrix.Controllers
             return Ok("Success");
         }
 
+        [HttpPut("ChangeRatingStatus")]
+        public SubSkillsRatings ChangeStatus(SubSkillsRatingStatus subskillRating)
+        {
+            var empSubskillRating = _db.SubSkillsRatings.FirstOrDefault(x => x.SubSkillsRatingsId == subskillRating.SubSkillsRatingsId);
+            empSubskillRating.IsApproved = subskillRating.IsApproved;
+            _db.SubSkillsRatings.Update(empSubskillRating);
+            _db.SaveChanges();
+            return empSubskillRating;
+        }
+
         [HttpDelete("DeleteSubSkillRatings")]
         public async Task<ActionResult> DeleteSubSkillsRatings(int subSkillRatingId)
         {
