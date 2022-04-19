@@ -52,7 +52,7 @@ namespace SkillMatrix.Controllers
             });
         }
 
-        [HttpGet("GetSubSkillsBySkillId")]
+        [HttpGet("GetApprovalsByManagerId")]
         public IEnumerable<EmployeeViewModel> GetApprovalByManagerId(int managerId)
         {
             var approvals = (from approvalDb in _db.Approvals
