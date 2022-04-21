@@ -27,6 +27,12 @@ namespace SkillMatrix.Controllers
             var TeamsubSkills = _db.TeamSubskills.ToList();
             return TeamsubSkills;
         }
+        [HttpGet("GetAllTeamSubSkillsbySkillId")]
+        public IEnumerable<TeamSubskills> GetAllSkills(int skillId)
+        {
+            var TeamsubSkills = _db.TeamSubskills.Where(m=>m.SkillId==skillId).ToList();
+            return TeamsubSkills;
+        }
 
         [HttpPost("AddTeamSubSkill")]
         public TeamSubskills CreateTeamSubSkills(TeamSubskills teamSubSkills)

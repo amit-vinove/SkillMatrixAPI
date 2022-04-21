@@ -27,6 +27,25 @@ namespace SkillMatrix.Controllers
             var employeeTeamQuestions = _db.EmployeeTeamQuestions.ToList();
             return employeeTeamQuestions;
         }
+        [HttpGet("GetQuestionsByEmpIdandTeamId")]
+        public IEnumerable<EmployeeTeamQuestionViewModel> GetQuestionsByEmpIdandTeamId(int empId,int teamId)
+        {
+            var employeeQuestions = (from empTeamQues in _db.EmployeeTeamQuestions
+                                     join team in _db.Teams
+                                     on empTeamQues.TeamId equals team.Id
+                                     join teamques in _db.TeamSkills 
+                                     on empTeamQues.TeamSkillsId 
+                                     equals teamques.TeamSkillId
+                                     where empTeamQues.EmpId==empId && empTeamQues.TeamId==teamId
+                                     select new EmployeeTeamQuestionViewModel()
+                                     {
+                                         EmpId=empId,
+                                         TeamId=teamId,
+                                         TeamSkillId=teamques.TeamSkillId,
+                                         TeamSkillName=teamques.TeamSkillName,
+                                     }).ToList();
+            return employeeQuestions;
+        }
 
         [HttpPost("CreateEmployeeTeamQuestions")]
         public EmployeeTeamQuestions CreateEmployeeTeamQuestions(EmployeeTeamQuestions employeeTeamQuestions)
