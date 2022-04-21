@@ -64,21 +64,54 @@ namespace SkillMatrix.Controllers
                 return NotFound("User Not Found!");
 
             if (user.Password != userLogin.Password)
-                return BadRequest("Wrong Credentails");
+                return BadRequest("Wrong Credentials");
+
+            var userDetails = (from userDb in _db.Users 
+                              join empDb in _db.Employees
+                              on userDb.EmpId equals empDb.Id
+                              where userDb.UserId == user.UserId
+                              select new UsersResponseModel()
+                              {
+                                  UserId = user.UserId,
+                                  Username = empDb.Name,
+                                  UserRole = user.Role,
+                                  UserRoleLevel = user.RoleLevel,
+                                  EmpId = user.EmpId
+
+                              }).ToList();
             return Ok(
                 new ResponseGlobal()
                 {
                     ResponseCode = ((int)System.Net.HttpStatusCode.OK),
                     Message = "Logged In",
-                    Data = new UsersResponseModel()
-                    {
-                        UserId = user.UserId,
-                        Username = user.Username,
-                        UserRole = user.Role,
-                        UserRoleLevel = user.RoleLevel,
-                        EmpId = user.EmpId
-                    }
+                    Data =   userDetails
                 });
+        }
+
+        [HttpPut("ForgotPassword")]
+        public async Task<ActionResult> ForgotPassword(UsersLoginModel userDetails)
+        {
+            if (userDetails == null)
+                return BadRequest("Invalid login details");
+
+            Users user = _db.Users.FirstOrDefault(m => m.Username == userDetails.Username);
+            if (user == null)
+                return NotFound("User Not Found!");
+
+            user.Password = userDetails.Password;
+            _db.Users.Update(user);
+            _db.SaveChanges();
+            return Ok(
+    new ResponseGlobal()
+    {
+        ResponseCode = ((int)System.Net.HttpStatusCode.OK),
+        Message = "Password Updated",
+        Data = new UsersResponseModel()
+        {
+            UserId = user.UserId,
+            Username = user.Username,
+        }
+    });
         }
 
 
