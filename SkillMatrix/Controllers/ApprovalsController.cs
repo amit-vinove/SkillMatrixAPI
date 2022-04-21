@@ -29,7 +29,7 @@ namespace SkillMatrix.Controllers
             return approvals;
         }
 
-        [HttpPost("AddSubSkill")]
+        [HttpPost("AddApprovals")]
         public Approvals CreateSubSkills(Approvals approvals)
         {
             _db.Approvals.Add(approvals);
