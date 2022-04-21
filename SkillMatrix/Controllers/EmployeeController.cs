@@ -43,6 +43,7 @@ namespace SkillMatrix.Controllers
                                   EmpId = empDb.Id,
                                   Name = empDb.Name,
                                   EmployeeCode = empDb.EmployeeCode,
+                                  RMId=empDb.ReportingManager,
                                   ReportingManager = managerDb.Name,
                                   Location = empDb.Location,
                                   Department = empDb.Department,

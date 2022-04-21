@@ -24,6 +24,7 @@ namespace SkillMatrix.Data
         public DbSet<EmployeeQuestions> EmployeeQuestions { get; set; }
         public DbSet<EmployeeTeamQuestions> EmployeeTeamQuestions { get; set; }
         public DbSet<Approvals> Approvals { get; set; }
+        public DbSet<UpdatedOn> UpdatedOn { get; set; }
 
 
 

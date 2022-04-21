@@ -9,6 +9,7 @@ namespace SkillMatrix.Model
         public string Name { get; set; }
         public string EmployeeCode { get; set; }
         public string ReportingManager { get; set; }
+        public int RMId { get; set; }
         public string Location { get; set; }    
         public string Department { get; set; }
         public string Team { get; set; }

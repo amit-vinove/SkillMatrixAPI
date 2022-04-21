@@ -78,5 +78,20 @@ namespace SkillMatrix.Controllers
                              }).ToList();
             return approvals;
         }
+
+        [HttpDelete("DeleteApprovalsByEmpId")]
+        public async Task<ActionResult> DeleteApprovalByEmpId(int empId)
+        {
+            var approvals = _db.Approvals.Where(m=>m.EmpId==empId);
+            _db.Approvals.RemoveRange(approvals);
+            _db.SaveChanges();
+            return Ok(
+            new ResponseGlobal()
+            {
+                ResponseCode = ((int)System.Net.HttpStatusCode.OK),
+                Message = "Approval Deleted Successfully",
+                Data = true
+            });
+        }
     }
 }
