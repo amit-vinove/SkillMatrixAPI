@@ -13,6 +13,7 @@ namespace SkillMatrix.Model
         public string Location { get; set; }    
         public string Department { get; set; }
         public string Team { get; set; }
+        public int TeamId { get; set; }
         public string Band { get; set; }
         public string Designation { get; set; }
         public bool Status { get; set; }

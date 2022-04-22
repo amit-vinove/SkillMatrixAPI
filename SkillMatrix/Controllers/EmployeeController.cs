@@ -47,6 +47,7 @@ namespace SkillMatrix.Controllers
                                   ReportingManager = managerDb.Name,
                                   Location = empDb.Location,
                                   Department = empDb.Department,
+                                  TeamId =empDb.Team,
                                   Team = teamdb.Name,
                                   Band = empDb.Band,
                                   Designation = empDb.Designation,
