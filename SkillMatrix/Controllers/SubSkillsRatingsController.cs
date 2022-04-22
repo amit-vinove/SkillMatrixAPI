@@ -61,6 +61,9 @@ namespace SkillMatrix.Controllers
         [HttpPost("PostEmpSubSkillRatings")]
         public IActionResult PostSubSkillsRatings(PostEmpSubskillRatingViewModel EmpsubSkillRatings)
         {
+            DateTime Dt = DateTime.Now;
+            string Month_Name = Dt.ToString("MMMM");
+            string Date = Dt.ToString("d");
             foreach (var item in EmpsubSkillRatings.subskillRatingArr)
             {
                 SubSkillsRatings temp = new SubSkillsRatings();
@@ -68,6 +71,8 @@ namespace SkillMatrix.Controllers
                 temp.Ratings = item[1];
                 temp.EmpId= EmpsubSkillRatings.EmpId;
                 temp.SkillId = EmpsubSkillRatings.SkillId;
+                temp.SubmittedOn = Date;
+                temp.AssessmentMonth = Month_Name;
 
                 _db.SubSkillsRatings.Add(temp);
             }

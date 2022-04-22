@@ -11,6 +11,10 @@ namespace SkillMatrix.Model
         public int EmpId { get; set; }
         public int Ratings { get; set; }
         public int IsApproved { get; set; }
+        public string SubmittedOn { get; set; }
+        public string AssessmentMonth { get; set; }
+
+
 
     }
 }

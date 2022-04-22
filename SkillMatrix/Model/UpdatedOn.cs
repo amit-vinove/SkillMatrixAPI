@@ -7,6 +7,7 @@ namespace SkillMatrixAPI.Model
         [Key]
         public int id { get; set; }
         public int empId { get; set; }
-        public DateTime Updated_On { get; set; }
+        public string SubmittedOn { get; set; }
+        public string AssessmentMonth { get; set; }
     }
 }
