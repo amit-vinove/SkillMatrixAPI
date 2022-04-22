@@ -66,25 +66,19 @@ namespace SkillMatrix.Controllers
             if (user.Password != userLogin.Password)
                 return BadRequest("Wrong Credentials");
 
-            var userDetails = (from userDb in _db.Users 
-                              join empDb in _db.Employees
-                              on userDb.EmpId equals empDb.Id
-                              where userDb.UserId == user.UserId
-                              select new UsersResponseModel()
-                              {
-                                  UserId = user.UserId,
-                                  Username = empDb.Name,
-                                  UserRole = user.Role,
-                                  UserRoleLevel = user.RoleLevel,
-                                  EmpId = user.EmpId
-
-                              }).ToList();
             return Ok(
                 new ResponseGlobal()
                 {
                     ResponseCode = ((int)System.Net.HttpStatusCode.OK),
                     Message = "Logged In",
-                    Data =   userDetails
+                    Data = new UsersResponseModel()
+                    {
+                                  UserId = user.UserId,
+                                  Username = user.Username,
+                                  UserRole = user.Role,
+                                  UserRoleLevel = user.RoleLevel,
+                                  EmpId = user.EmpId
+                    }
                 });
         }
 
