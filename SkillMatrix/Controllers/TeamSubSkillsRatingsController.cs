@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using SkillMatrix.Data;
 using SkillMatrix.Model;
 using SkillMatrix.Models;
+using SkillMatrixAPI.Model;
 
 namespace SkillMatrix.Controllers
 {
@@ -34,6 +35,22 @@ namespace SkillMatrix.Controllers
             _db.TeamSubskillRatings.Add(teamSubSkillRatings);
             _db.SaveChanges();
             return teamSubSkillRatings;
+        }
+        [HttpPost("PostEmpTeamSubSkillRatings")]
+        public IActionResult PostTeamSubSkillsRatings(PostEmpTeamSubskillRating EmpTeamSubSkillRatings)
+        {
+            foreach (var item in EmpTeamSubSkillRatings.teamSubskillRatingArr)
+            {
+                TeamSubskillRatings temp = new TeamSubskillRatings();
+                temp.SubskillId = item[0];
+                temp.Ratings = item[1];
+                temp.EmpId = EmpTeamSubSkillRatings.EmpId;
+                temp.SkillId = EmpTeamSubSkillRatings.SkillId;
+
+                _db.TeamSubskillRatings.Add(temp);
+            }
+            _db.SaveChanges();
+            return Ok("Success");
         }
 
         [HttpDelete("DeleteTeamSubSkillRatings")]
