@@ -28,6 +28,24 @@ namespace SkillMatrix.Controllers
             return TeamsubSkills;
         }
 
+        [HttpGet("GetTeamSkillsByTeamId")]
+        public IEnumerable<TeamSkills> GetTeamSkillsByTeamId(int teamId)
+        {
+            var TeamSkill = (from skillsDB in _db.TeamSkills 
+                            join teamDB in _db.Teams on 
+                            skillsDB.TeamId equals teamDB.Id
+                            where skillsDB.TeamId == teamId 
+                            select new TeamSkills()
+                            {
+                                TeamSkillId = skillsDB.TeamSkillId,
+                                TeamSkillName = skillsDB.TeamSkillName,
+                                TeamName = teamDB.Name,
+                                TeamId = teamId
+                            }).ToList();
+                            
+            return TeamSkill;
+        }
+
         [HttpPost("AddTeamSkill")]
         public TeamSkills CreateTeamSubSkills(TeamSkills teamSkills)
         {
