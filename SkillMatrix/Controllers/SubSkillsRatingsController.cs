@@ -59,12 +59,34 @@ namespace SkillMatrix.Controllers
             return subSkillRatings;
         }
 
+        [HttpGet("IsExistRating")]
+        public async Task<bool> DeleteExistance(int empId , int skillId , string month)
+        {
+            var row = (_db.SubSkillsRatings.Where(r => r.EmpId == empId && r.SkillId == skillId && r.AssessmentMonth == month)).ToList();
+            if (row.Count > 0)
+            {
+                foreach (var item in row)
+                {
+                    _db.SubSkillsRatings.Remove(item);
+                }
+                _db.SaveChanges();
+                return true;
+            }
+            
+            return false;
+        }
+
         [HttpPost("PostEmpSubSkillRatings")]
-        public IActionResult PostSubSkillsRatings(PostEmpSubskillRatingViewModel EmpsubSkillRatings)
+        public async Task<IActionResult> PostSubSkillsRatings(PostEmpSubskillRatingViewModel EmpsubSkillRatings)
         {
             DateTime Dt = DateTime.Now;
             string Month_Name = Dt.ToString("MMMM");
             string Date = Dt.ToString("d");
+
+            int empId = EmpsubSkillRatings.EmpId;
+            int skillId = EmpsubSkillRatings.SkillId;
+            string month = EmpsubSkillRatings.AssessmentMonth;
+            await DeleteExistance(empId, skillId, Month_Name);
             foreach (var item in EmpsubSkillRatings.subskillRatingArr)
             {
                 SubSkillsRatings temp = new SubSkillsRatings();
