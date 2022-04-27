@@ -85,7 +85,7 @@ namespace SkillMatrix.Controllers
 
             int empId = EmpsubSkillRatings.EmpId;
             int skillId = EmpsubSkillRatings.SkillId;
-            string month = EmpsubSkillRatings.AssessmentMonth;
+
             await DeleteExistance(empId, skillId, Month_Name);
             foreach (var item in EmpsubSkillRatings.subskillRatingArr)
             {

@@ -32,6 +32,11 @@ namespace SkillMatrix.Controllers
         [HttpPost("AddApprovals")]
         public Approvals CreateSubSkills(Approvals approvals)
         {
+            DateTime Dt = DateTime.Now;
+            string Month_Name = Dt.ToString("MMMM");
+            string Date = Dt.ToString("d");
+            approvals.SubmittedOn = Date;
+            approvals.AssessmentMonth = Month_Name;
             _db.Approvals.Add(approvals);
             _db.SaveChanges();
             return approvals;
@@ -53,7 +58,7 @@ namespace SkillMatrix.Controllers
         }
 
         [HttpGet("GetApprovalsByManagerId")]
-        public IEnumerable<EmployeeViewModel> GetApprovalByManagerId(int managerId)
+        public IEnumerable<EmployeeApprovalViewModel> GetApprovalByManagerId(int managerId)
         {
             var approvals = (from approvalDb in _db.Approvals
                              join empDB in _db.Employees on
@@ -63,7 +68,7 @@ namespace SkillMatrix.Controllers
                              join teamDB in _db.Teams on    
                              empDB.Team equals teamDB.Id
                              where approvalDb.ManagerId == managerId
-                             select new EmployeeViewModel()
+                             select new EmployeeApprovalViewModel()
                              {
                                  EmpId = empDB.Id,
                                  Name = empDB.Name,
@@ -77,6 +82,7 @@ namespace SkillMatrix.Controllers
                                  Band = empDB.Band,
                                  Designation = empDB.Designation,
                                  UserName = empDB.Email,
+                                 AssessmentMonth = approvalDb.AssessmentMonth
                              }).ToList();
             return approvals;
         }

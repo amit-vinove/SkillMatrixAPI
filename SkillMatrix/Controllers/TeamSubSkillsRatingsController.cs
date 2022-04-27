@@ -84,7 +84,7 @@ namespace SkillMatrix.Controllers
 
                 int empId = EmpTeamSubSkillRatings.EmpId;
                 int skillId = EmpTeamSubSkillRatings.SkillId;
-                string month = EmpTeamSubSkillRatings.AssessmentMonth;
+                
                 await DeleteExistance(empId, skillId, Month_Name);
                 TeamSubskillRatings temp = new TeamSubskillRatings();
                 temp.SubskillId = item[0];
