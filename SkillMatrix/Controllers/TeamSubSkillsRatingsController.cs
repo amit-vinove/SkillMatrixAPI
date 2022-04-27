@@ -29,7 +29,7 @@ namespace SkillMatrix.Controllers
             return TeamsubSkillsRatings;
         }
         [HttpGet("GetTeamSubSkillRatingBySkillIdAndEmpId")]
-        public IEnumerable<EmpSubSkillsRatingsViewModel> GetEmpTeamSubSkillsRatings(int skillId, int empId)
+        public IEnumerable<EmpSubSkillsRatingsViewModel> GetEmpTeamSubSkillsRatings(int skillId, int empId , string month)
         {
             var empRatings = (from ratingsDb in _db.TeamSubskillRatings
                               join teamSubSkillsDb in _db.TeamSubskills on
@@ -43,6 +43,7 @@ namespace SkillMatrix.Controllers
                                   SkillId = skillId,
                                   Ratings = ratingsDb.Ratings,
                                   IsApproved = ratingsDb.IsApproved,
+                                  Month = month
                               }).ToList();
 
             return empRatings;

@@ -30,12 +30,12 @@ namespace SkillMatrix.Controllers
         }
 
         [HttpGet("GetSubSkillRatingBySkillIdAndEmpId")]
-        public IEnumerable<EmpSubSkillsRatingsViewModel> GetEmpSubSkillsRatings(int skillId, int empId)
+        public IEnumerable<EmpSubSkillsRatingsViewModel> GetEmpSubSkillsRatings(int skillId, int empId, string month)
         {
             var empRatings = (from ratingsDb in _db.SubSkillsRatings
                               join subSkillsDb in _db.SubSkills on
                               ratingsDb.SubSkillId equals subSkillsDb.SubSkillsId
-                              where ratingsDb.EmpId == empId && ratingsDb.SkillId == skillId
+                              where ratingsDb.EmpId == empId && ratingsDb.SkillId == skillId && ratingsDb.AssessmentMonth == month
                               select new EmpSubSkillsRatingsViewModel()
                               {
                                   EmpSubSkillsRatingsId = ratingsDb.SubSkillsRatingsId,
@@ -44,6 +44,7 @@ namespace SkillMatrix.Controllers
                                   SkillId = skillId,
                                   Ratings = ratingsDb.Ratings,
                                   IsApproved = ratingsDb.IsApproved,
+                                  Month = month
                               }).ToList();
 
             return empRatings;
